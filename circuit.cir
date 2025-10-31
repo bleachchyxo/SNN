@@ -1,0 +1,12 @@
+* Simple LED circuit simulation with DC source
+V1 1 0 DC 5      ; DC Voltage source with 5V
+R1 1 2 220       ; 220 Ohm resistor
+D1 2 0 LED       ; LED
+
+.model LED d(IS=1e-14)  ; Ideal diode model for LED
+
+.control
+tran 0.1ms 50ms  ; Transient analysis from 0 to 50ms with 0.1ms time step
+print V(2) > voltage_output.txt  ; Save voltage at Node 2 (across the LED)
+.endc
+.end
